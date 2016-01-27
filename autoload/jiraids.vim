@@ -57,7 +57,7 @@ fun! jiraids#FetchIssues()
   let auth = system('security find-generic-password -a vim-jira -w | awk '.shellescape('{printf"'.user.':"$1}').' | base64')
   let auth = substitute(auth, '\n', '', '')
 
-  let curl_cmd = "curl -s -X POST -H 'Authorization: Basic ".auth."' -H 'Content-Type: application/json' --data ". shellescape(curl_data) ." '".g:jira_url."/rest/api/2/search'"
+  let curl_cmd = "curl -k -s -X POST -H 'Authorization: Basic ".auth."' -H 'Content-Type: application/json' --data ". shellescape(curl_data) ." '".g:jira_url."/rest/api/2/search'"
 
   let resp = system(curl_cmd)
   if !empty(resp)
