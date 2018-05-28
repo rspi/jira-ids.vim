@@ -3,6 +3,7 @@ let s:fetchSuccess = 0
 
 " complete-functions
 fun! jiraids#Complete(findstart, base)
+  call jiraids#FetchIssues()
   if a:findstart
     let line = getline('.')
 
